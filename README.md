@@ -1,5 +1,10 @@
-# introduction-to-pulumi
+# Introduction-to-pulumi
 
 An interactive workshop to get started with Pulumi
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/pulumi/introduction-to-pulumi)
+# Instructions
+
+- Fork this repo
+- Open your repo in GitPod:
+
+https://gitpod.io/#https://github.com/<your-username>/introduction-to-pulumi
