@@ -1,0 +1,8 @@
+image:
+  file: .gitpod/Dockerfile
+tasks:
+  - name: Login to Pulumi
+    command: pulumi login
+ports:
+  - port: 3000
+    onOpen: ignore
