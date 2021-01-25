@@ -1,7 +1,8 @@
 image:
   file: .gitpod/Dockerfile
 tasks:
-  - before: "echo 'export PIP_USER=no' >> ~/.bashrc && export PIP_USER=no"
+  - name: disable pip_user
+    command: "echo 'export PIP_USER=no' >> ~/.bashrc && export PIP_USER=no"
   - name: Login to Pulumi
     command: pulumi login
 ports:
