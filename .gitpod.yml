@@ -1,7 +1,7 @@
 image:
   file: .gitpod/Dockerfile
 tasks:
-  - init: disable pip_user
+  - name: disable pip_user
     command: "sed -i 's/export PIP_USER=yes/export PIP_USER=no/g' /home/gitpod/.bashrc"
   - name: start docker
     command: sudo docker-up &
