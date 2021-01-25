@@ -1,8 +1,10 @@
 image:
   file: .gitpod/Dockerfile
 tasks:
-  - name: disable pip_user
+  - name: disable pip_user globally
     command: "sed -i 's/export PIP_USER=yes/export PIP_USER=no/g' /home/gitpod/.bashrc"
+  - name: disable pip user
+    command "export PIP_USER=no"
   - name: start docker
     command: sudo docker-up &
   - name: Login to Pulumi
