@@ -1,9 +1,9 @@
 image:
   file: .gitpod/Dockerfile
 tasks:
-  - name: start docker
+  - name: Start Docker Daemon
     command: sudo docker-up &
-  - name: Login to Pulumi
+  - name: Use Pulumi
     command: pulumi login
 ports:
   - port: 3000
