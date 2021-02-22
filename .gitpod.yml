@@ -1,7 +1,6 @@
 image:
   file: .gitpod/Dockerfile
 tasks:
-  -
   - name: Start Docker Daemon
     command: sudo docker-up &
   - before: "echo 'export PIP_USER=no' >> ~/.bashrc && export PIP_USER=no"
