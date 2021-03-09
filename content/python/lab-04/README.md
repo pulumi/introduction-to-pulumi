@@ -85,7 +85,7 @@ Diagnostics:
 Our configuration error is back! This is because when we configure values in pulumi, they are specific to a stack. So, let's set a port for our prod stack:
 
 ```
-pulumi comnfig set port 5000
+pulumi config set port 5000
 ```
 
 Make sure you use a different port to your `dev` stack!
