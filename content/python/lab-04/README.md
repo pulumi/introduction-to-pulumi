@@ -58,7 +58,7 @@ pulumi stack output container_id
 Which also means you can use them in scripts, like so:
 
 ```bash
-docker stats --no-stream $(pulumi stack output containerId)
+docker stats --no-stream $(pulumi stack output container_id)
 CONTAINER ID        NAME                   CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
 44dde1c3ec15        my-first-app-0d221af   0.00%               0B / 0B             0.00%               1.02kB / 796B       0B / 0B             0
 ```
@@ -85,7 +85,7 @@ Diagnostics:
 Our configuration error is back! This is because when we configure values in pulumi, they are specific to a stack. So, let's set a port for our prod stack:
 
 ```
-pulumi comnfig set port 5000
+pulumi config set port 5000
 ```
 
 Make sure you use a different port to your `dev` stack!
