@@ -1,4 +1,4 @@
-FROM node:12-buster-slim
+FROM node:12-alpine3.12
 
 WORKDIR /app
 

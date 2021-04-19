@@ -26,7 +26,7 @@ const imageName = "my-first-app"
 const stack = pulumi.getStack();
 
 const image = new docker.Image('local-image', {
-    build: './app',
+    build: '../app/typescript',
     imageName: `${imageName}:${stack}`,
     skipPush: true,
 })
@@ -51,32 +51,7 @@ Now, try and rerun your Pulumi program.
 
 Your Pulumi program should now run, but you're not actually using this newly configured port, yes!
 
-## Step 2 - Update your TypeScript WebApp
-
-Let's update your `app/index.ts` file to use a port which can be configured by an environment variable. Update that file so it looks like this:
-
-```typescript
-import express = require('express');
-import morgan = require('morgan');
-
-const app: express.Application = express();
-const listenPort = process.env["LISTEN_PORT"];
-
-// defines a logger for output
-app.use(morgan('combined'))
-
-app.get('/', function(req, res) {
-    res.send("Hello world!");
-});
-
-app.listen(listenPort, function() {
-    console.log('Starting app on port' + listenPort);
-})
-```
-
-We're grabbing the `listPort` value here from the environment variable `LISTEN_PORT`. Now, let's use Pulumi to pass that into our Docker container.
-
-## Step 3 - Create a Container resource
+## Step 2 - Create a Container resource
 
 In lab 02 we built a Docker Image. Now we want to create a Docker container which runs that image and pass our configuration to it.
 

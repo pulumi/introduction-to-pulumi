@@ -28,7 +28,7 @@ image_name = "my-first-app"
 
 # build our image!
 image = Image(image_name,
-              build=DockerBuild(context="app"),
+              build=DockerBuild(context="../app/python"),
               image_name=f"{image_name}:{stack}",
               skip_push=True)
 ```
@@ -52,33 +52,8 @@ Now, try and rerun your Pulumi program.
 
 Your Pulumi program should now run, but you're not actually using this newly configured port, yes!
 
-## Step 2 - Update your Python WebApp
 
-Let's update your `app/__main__.py` file to use a port which can be configured by an environment variable. Update that file so it looks like this:
-
-```python
-import http.server
-import socketserver
-import os
-from http import HTTPStatus
-
-
-class Handler(http.server.SimpleHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(HTTPStatus.OK)
-        self.end_headers()
-        self.wfile.write(b'Hello, world!')
-
-
-
-PORT = os.environ.get("LISTEN_PORT")
-httpd = socketserver.TCPServer(('', int(PORT)), Handler)
-httpd.serve_forever()
-```
-
-We're grabbing the `PORT` value here from the environment variable `LISTEN_PORT`. Now, let's use Pulumi to pass that into our Docker container.
-
-## Step 3 - Create a Container resource
+## Step 2 - Create a Container resource
 
 In lab 02 we built a Docker Image. Now we want to create a Docker container which runs that image and pass our configuration to it.
 
