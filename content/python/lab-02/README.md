@@ -2,21 +2,15 @@
 
 In this lab, we'll create our first Pulumi resource. We'll run a Docker container we build locally using infrastructure as code.
 
-## Step 2 - Create your application
+## Step 1 - Verify your application
 
-Now, let's make a very simple HTTP application with Python. Inside your project directory, create an application directory:
+We have a preconfigured python webserver application in our repo. Take a look at `app/python/__main__.py`
 
-```bash
-mkdir app
-```
-
-Inside this `app` directory should be two files. We need to bootstrap a webserver application. We can use native python for this:
-
-In a file called `app/__main__.py` add the following contents:
 
 ```python
 import http.server
 import socketserver
+import os
 from http import HTTPStatus
 
 
@@ -24,14 +18,17 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         self.send_response(HTTPStatus.OK)
         self.end_headers()
-        self.wfile.write(b'Hello Lee')
+        self.wfile.write(b'Hello, world!')
 
 
-httpd = socketserver.TCPServer(('', 3000), Handler)
+
+PORT = os.environ.get("LISTEN_PORT")
+httpd = socketserver.TCPServer(('', int(PORT)), Handler)
 httpd.serve_forever()
 ```
+You'll see this is a very simple Python webserver that listens on a port and serves a response: `Hello, world!`
 
-Next, create a `Dockerfile` which will be built and will include this webserver
+Next, let's examine our `Dockerfile` in `app/python/Dockerfile`:
 
 ```
 FROM python:3.8.6-alpine
@@ -43,7 +40,9 @@ COPY __main__.py /app
 CMD [ "python", "/app/__main__.py" ]
 ```
 
-## Step 3 - Build your Docker Image with Pulumi
+This `Dockerfile` copies the python webserver into the Docker container and runs it.
+
+## Step 2 - Build your Docker Image with Pulumi
 
 Back inside your pulumi program, let's build your Docker image. Inside your Pulumi program's `__main__.py` add the following:
 
@@ -57,7 +56,7 @@ image_name = "my-first-app"
 
 # build our image!
 image = Image(image_name,
-              build=DockerBuild(context="app"),
+              build=DockerBuild(context="../app/python"),
               image_name=f"{image_name}:{stack}",
               skip_push=True)
 ```
