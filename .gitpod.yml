@@ -3,9 +3,8 @@ image:
 tasks:
   - name: Start Docker Daemon
     command: sudo docker-up &
-  - before: "echo 'export PIP_USER=no' >> ~/.bashrc && export PIP_USER=no"
+  - command: "echo 'export PIP_USER=no' >> ~/.bashrc && export PIP_USER=no"
     name: Use Pulumi
-    command: pulumi login
 ports:
   - port: 3000
     onOpen: ignore
