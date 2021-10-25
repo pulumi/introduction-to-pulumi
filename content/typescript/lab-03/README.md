@@ -76,4 +76,4 @@ Run your `pulumi up` again here and see your docker image running.
 
 # Next Steps
 
-* [Export Outputs](../lab-04/README.md)
+* [More resources](../lab-04/README.md)
