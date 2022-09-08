@@ -1,3 +1,8 @@
+# This repo is being deprecated in favor of https://github.com/pulumi/workshops.
+![deprecated](https://img.shields.io/badge/repo%20status-deprecated-red)
+
+The workshops in this repo have been moved over to that repo and placed in the archive as newer workshops based off these workshops have been generated.
+
 # Introduction To Pulumi
 
 This workshop guides you through your first Pulumi experience. You'll be learning some of the basics of how Pulumi works using the Pulumi [Docker Provider](https://www.pulumi.com/docs/intro/cloud-providers/docker/)
